@@ -6,7 +6,8 @@ const {
     GraphQLID,
     GraphQLInt,
     GraphQLString,
-    GraphQLList
+    GraphQLList,
+    GraphQLBoolean
 } = graphql;
 
 const PollType = new GraphQLObjectType({
@@ -15,7 +16,7 @@ const PollType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString},
         questions: {
-            type: new GraphQLList(), //require("./QuestionType")
+            type: new GraphQLList(require("./QuestionType")), 
             resolve(parentValue) {
                 return Poll.findQuestions(parentValue.id);
             },

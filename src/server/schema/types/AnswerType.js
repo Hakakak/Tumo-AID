@@ -6,6 +6,7 @@ const {
     GraphQLID,
     GraphQLInt,
     GraphQLString,
+    GraphQLBoolean
 } = graphql;
 
 const AnswerType = new GraphQLObjectType({

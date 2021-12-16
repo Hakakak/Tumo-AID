@@ -23,6 +23,22 @@ QuestoinSchema.statics.findAnsweres = () => {
     });
 }
 
+QuestoinSchema.statics.addAnswer = (id, realanswer, istrue) => {
+    const Answer = require("./AnswerModel").default;
+
+    return this.findById(id).then((question) => {
+        const answer = new Answer({
+            question,
+            realanswer,
+            istrue
+        });
+        question.answeres.push(answer);
+        return Promise.all([answer.save(), question.save()]).then(
+            ([question, answer]) => question
+        );
+    })
+}
+
 const Question = mongoose.model("question", QuestoinSchema);
 
 module.exports = Question;
