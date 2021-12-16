@@ -1,0 +1,5 @@
+schema {
+  query: RootQueryType
+}
+
+type RootQueryType
