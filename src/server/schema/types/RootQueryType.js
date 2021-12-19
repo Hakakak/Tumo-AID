@@ -1,25 +1,25 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
-const PollType = require("./PollType");
+const QuizType = require("./QuizType");
 //const QuestionType = require("./QuestionType");
 //const Question = mongoose.model("question");
-const Poll = mongoose.model("poll");
+const Quiz = mongoose.model("quiz");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: () => ({
-    polls: {
-      type: new GraphQLList(PollType),
+    Quizs: {
+      type: new GraphQLList(QuizType),
       resolve() {
-        return Poll.find({});
+        return Quiz.find({});
       },
     },
-    poll: {
-      type: PollType,
+    Quiz: {
+      type: QuizType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, { id }) {
-        return Poll.findById(id);
+        return Quiz.findById(id);
       },
     },
     // Question: {

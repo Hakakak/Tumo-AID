@@ -11,10 +11,6 @@ const ClientSchema = new Schema({
     type: String,
     required: true,
   },
-  poll: {
-      type: Schema.Types.ObjectId,
-      ref: "poll"
-    }
 }, { timestamps: true });
 
 const Client = Mongoose.model("client", ClientSchema);

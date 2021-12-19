@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const QuestoinSchema = new Schema ({
-    poll: {
+    container: {
         type: Schema.Types.ObjectId,
-        ref: "poll"
+        ref: "container"
     },
     question: {
         type: String,

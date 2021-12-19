@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const Poll = mongoose.model("poll");
+const QuContainer = mongoose.model("container");
 const {
     GraphQLObjectType,
     GraphQLID,
@@ -10,19 +10,18 @@ const {
     GraphQLBoolean
 } = graphql;
 
-const PollType = new GraphQLObjectType({
-    name: "PollType",
+const QuContainerType = new GraphQLObjectType({
+    name: "QuContainerType",
     fields: () => ({
         id: { type: GraphQLID },
-        name: { type: GraphQLString},
         questions: {
             type: new GraphQLList(require("./QuestionType")), 
             resolve(parentValue) {
-                return Poll.findQuestions(parentValue.id);
+                return QuContainer.findQuestions(parentValue.id);
             },
         },
         status: { type: GraphQLBoolean },
     }),
 });
 
-module.exports = PollType;
+module.exports = QuContainerType;

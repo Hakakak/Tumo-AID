@@ -15,7 +15,7 @@ const QuestionType = new GraphQLObjectType({
     id: { type: GraphQLID },
     question: {type: GraphQLString},
     poll: {
-      type: require("./PollType"),
+      type: require("./QuizType"),
       resolve(parentValue) {
         return Question.findById(parentValue)
           .populate("poll")

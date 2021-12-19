@@ -1,9 +1,10 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 const mongoose = require("mongoose");
-const Poll = mongoose.model("poll");
+const Quiz = mongoose.model("quiz");
+const QuContainer = mongoose.model("container");
 const Question = require("../../models/QuestionModel");
-const PollType = require("./PollType");
+const QuizType = require("./QuizType");
 const QuestionType = require("./QuestionType");
 const AnswerType = require("./AnswerType");
 const { GraphQLBoolean } = require("graphql");
@@ -11,27 +12,27 @@ const { GraphQLBoolean } = require("graphql");
 // const mutation = new GraphQLObjectType({
 //   name: "Mutation",
 //   fields: {
-//     addPoll: {
-//       type: PollType,
+//     addQuiz: {
+//       type: QuizType,
 //       args: {
 //         name: { type: GraphQLString },
 //       },
 //       resolve(parentValue, { name }) {
-//         return new Poll({ name }).save();
+//         return new Quiz({ name }).save();
 //       },
 //     },
-//     addQuestionToPoll: {
-//       type: PollType,
+//     addQuestionToQuiz: {
+//       type: QuizType,
 //       args: {
 //         id: { type: GraphQLID },
 //         question: { type: QuestionType },
 //         answers: { type: GraphQLList(AnswerType) },
 //       },
 //       resolve(parentValue, { question, id, answers }) {
-//         return Poll.addQuestion(id, question, answers);
+//         return Quiz.addQuestion(id, question, answers);
 //       },
 //     },
-//     addAnswerToPoll: {
+//     addAnswerToQuiz: {
 //       type: QuestionType,
 //       args: { 
 //           id: { type: GraphQLID },
@@ -48,27 +49,28 @@ const { GraphQLBoolean } = require("graphql");
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    addPoll: {
-      type: PollType,
+    addQuiz: {
+      type: QuizType,
       args: {
         name: { type: GraphQLString },
+        status: { type: GraphQLBoolean },
       },
-      resolve(parentValue, { name }) {
-        return new Poll({ name }).save();
+      resolve(parentValue, { name, status }) {
+        return new Quiz({ name, status }).save();
       },
     },
-    addQuestionToPoll: {
-      type: PollType,
+    addQuestionToDataBase: {
+      type: QuizType,
       args: {
         id: { type: GraphQLID },
         question: { type: GraphQLString },
         answers: { type: GraphQLList(GraphQLString) },
       },
       resolve(parentValue, { question, id, answers }) {
-        return Poll.addQuestion(id, question, answers);
+        return QuContainer.addQuestion(id, question, answers);
       },
     },
-    addAnswerToPoll: {
+    addAnswerToDataBase: {
       type: QuestionType,
       args: { 
           id: { type: GraphQLID },
