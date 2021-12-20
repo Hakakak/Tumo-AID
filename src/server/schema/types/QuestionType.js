@@ -6,6 +6,7 @@ const {
     GraphQLID,
     GraphQLInt,
     GraphQLString,
+    GraphQLList
 } = graphql;
 
 const QuestionType = new GraphQLObjectType({
@@ -19,13 +20,12 @@ const QuestionType = new GraphQLObjectType({
         return Question.findById(parentValue)
           .populate("quiz")
           .then((Question) => {
-            console.log(Question);
             return Question.quiz;
           });
       },
     },
     answers: {
-      type: require("./AnswerType"),
+      type: new GraphQLList(require("./AnswerType")),
       resolve(parentValue) {
         return Question.findAnsweres(parentValue.id);
       },

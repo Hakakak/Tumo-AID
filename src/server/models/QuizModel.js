@@ -7,7 +7,7 @@ const QuizSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "question"
     } ],
-    status: {type: Boolean, required: true}
+    status: {type: Boolean}
 });
 
 QuizSchema.statics.findQuestions = function(id) {

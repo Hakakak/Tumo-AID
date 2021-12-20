@@ -60,25 +60,26 @@ const mutation = new GraphQLObjectType({
       },
     },
     addQuestionToDataBase: {
-      type: QuizType,
+      type: QuestionType,
       args: {
         id: { type: GraphQLID , required: true},
         question: { type: GraphQLString },
         answers: { type: GraphQLList(GraphQLID) },
       },
-      resolve(parentValue, { question, id, answers }) {
+      resolve(parentValue, { id, question, answers }) {
         return QuContainer.addQuestion(id, question, answers);
       },
     },
     addAnswerToDataBase: {
-      type: QuestionType,
+      type: AnswerType,
       args: { 
-          id: { type: GraphQLID },
-          answer: { type: GraphQLString },
-          istrue: { type: GraphQLBoolean },
+        id: { type: GraphQLID },
+        answer: { type: GraphQLString },
+        answertype: { type: GraphQLString },
+        istrue: { type: GraphQLBoolean },
       },
-      resolve(parentValue, { id , answer, istrue}) {
-        return Question.addAnswer(id, answer, istrue);
+      resolve(parentValue, { id , answer, answertype, istrue}) {
+        return Question.addAnswer(id, answer, answertype, istrue);
       },
     },
     addContainer: {

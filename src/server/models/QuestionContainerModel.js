@@ -21,18 +21,18 @@ QuContainerSchema.statics.findQuestions = function(id) {
         .then((container) =>  container.questions );
 }
 
-QuContainerSchema.statics.addQuestion = function(id, questionString, answeres) {
+QuContainerSchema.statics.addQuestion = function(id, question, answeres) {
     const Question = require("./QuestionModel");
     
     return this.findById(id).then((container) => {
-        const question = new Question({
+        const realquestion = new Question({
             container,
-            questionString,
+            question,
             answeres
         });
-        container.questions.push(question);
-        return Promise.all([question.save(), container.save()]).then(
-            ([container, question]) => container
+        container.questions.push(realquestion);
+        return Promise.all([realquestion.save(), container.save()]).then(
+            ([container, realquestion]) => container
         );
     })
 }

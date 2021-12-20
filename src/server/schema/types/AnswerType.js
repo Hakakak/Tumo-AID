@@ -12,7 +12,9 @@ const {
 const AnswerType = new GraphQLObjectType({
   name: "AnswerType",
   fields: () => ({
+    id: { type: GraphQLID },
     answer: { type: GraphQLString },
+    answertype: { type: GraphQLString },
     istrue: { type: GraphQLBoolean },
     question: {
       type: require("./QuestionType"),

@@ -8,33 +8,33 @@ const QuestoinSchema = new Schema ({
     },
     question: {
         type: String,
-        required: true
     },
-    answeres: [ {
+    answers: [ {
         type: Schema.Types.ObjectId,
         ref: "answer"
     } ]
 });
 
-QuestoinSchema.statics.findAnsweres = function(id) {
-    const answeres = this.findById(id).populate("answeres");
-    return answeres.then((question) => {
-        return question.answeres;
-    });
+QuestoinSchema.statics.findAnsweres = async function(id) {
+    return this.findById(id)
+        .populate("answers")
+        .then((question) =>  question.answers );
 }
 
-QuestoinSchema.statics.addAnswer = function(id, realanswer, istrue) {
-    const Answer = require("./AnswerModel").default;
+QuestoinSchema.statics.addAnswer = function(id, answer, answertype, istrue) {
+    const Answer = require("./AnswerModel");
 
+    if(answertype == null) answertype = "checkbox";
     return this.findById(id).then((question) => {
-        const answer = new Answer({
+        const realanswer = new Answer({
             question,
-            realanswer,
+            answer,
+            answertype,
             istrue
         });
-        question.answeres.push(answer);
-        return Promise.all([answer.save(), question.save()]).then(
-            ([question, answer]) => question
+        question.answers.push(realanswer);
+        return Promise.all([realanswer.save(), question.save()]).then(
+            ([question, realanswer]) => question
         );
     })
 }

@@ -5,11 +5,20 @@ schema {
 
 type RootQueryType {
   Quizes: [QuizType]
+  Containers: [QuContainerType]
   Quiz(id: ID!): QuizType
   Question(id: ID!): QuestionType
+  Answer(id: ID!): AnswerType
 }
 
 type QuizType {
+  id: ID
+  name: String
+  questions: [ID]
+  status: Boolean
+}
+
+type QuContainerType {
   id: ID
   name: String
   questions: [QuestionType]
@@ -20,24 +29,20 @@ type QuestionType {
   id: ID
   question: String
   quiz: QuizType
-  answers: AnswerType
+  answers: [AnswerType]
 }
 
 type AnswerType {
+  id: ID
   answer: String
+  answertype: String
   istrue: Boolean
   question: QuestionType
 }
 
 type Mutation {
   addQuiz(name: String, status: Boolean): QuizType
-  addQuestionToDataBase(id: ID, question: String, answers: [String]): QuizType
-  addAnswerToDataBase(id: ID, answer: String, istrue: Boolean): QuestionType
-  addContainer: QuContainerType
-}
-
-type QuContainerType {
-  id: ID
-  questions: [String]
-  status: Boolean
+  addQuestionToDataBase(id: ID, question: String, answers: [ID]): QuestionType
+  addAnswerToDataBase(id: ID, answer: String, answertype: String, istrue: Boolean): AnswerType
+  addContainer(name: String, status: Boolean): QuContainerType
 }
