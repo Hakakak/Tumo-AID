@@ -16,14 +16,14 @@ const QuestoinSchema = new Schema ({
     } ]
 });
 
-QuestoinSchema.statics.findAnsweres = () => {
+QuestoinSchema.statics.findAnsweres = function(id) {
     const answeres = this.findById(id).populate("answeres");
     return answeres.then((question) => {
         return question.answeres;
     });
 }
 
-QuestoinSchema.statics.addAnswer = (id, realanswer, istrue) => {
+QuestoinSchema.statics.addAnswer = function(id, realanswer, istrue) {
     const Answer = require("./AnswerModel").default;
 
     return this.findById(id).then((question) => {

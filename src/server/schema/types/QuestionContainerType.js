@@ -14,8 +14,9 @@ const QuContainerType = new GraphQLObjectType({
     name: "QuContainerType",
     fields: () => ({
         id: { type: GraphQLID },
+        name: { type: GraphQLString },
         questions: {
-            type: new GraphQLList(require("./QuestionType")), 
+            type: new GraphQLList(GraphQLID), 
             resolve(parentValue) {
                 return QuContainer.findQuestions(parentValue.id);
             },

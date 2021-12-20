@@ -1,7 +1,7 @@
 //@ts-check
 const models = require("../models");
 const graphql = require("graphql");
-const { GraphQLSchema, printSchema } = graphql;
+const { GraphQLSchema } = graphql;
 const RootQueryType = require("./types/RootQueryType");
 const Mutations = require("./types/Mutations");
 

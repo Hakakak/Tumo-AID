@@ -11,6 +11,10 @@ const AnswerSchema = new Schema ({
         type: String,
         required: true
     },
+    answertype: {
+        type: String,
+        required: true
+    },
     istrue: Boolean
 });
 

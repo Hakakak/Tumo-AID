@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const Question = require("../../models/QuestionModel");
-//const Question = mongoose.model("question");
+const Question = mongoose.model("question");
 const {
     GraphQLObjectType,
     GraphQLID,
@@ -14,14 +13,14 @@ const QuestionType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     question: {type: GraphQLString},
-    poll: {
+    quiz: {
       type: require("./QuizType"),
       resolve(parentValue) {
         return Question.findById(parentValue)
-          .populate("poll")
+          .populate("quiz")
           .then((Question) => {
             console.log(Question);
-            return Question.poll;
+            return Question.quiz;
           });
       },
     },

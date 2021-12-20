@@ -1,22 +1,28 @@
+const { GraphQLString, GraphQLBoolean } = require("graphql");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const QuContainerChema = new Schema ({
-    questions: {
+const QuContainerSchema = new Schema ({
+    name: {
+        type: GraphQLString
+    },
+    questions: [ {
         type: Schema.Types.ObjectId,
         ref: "question"
-    },
+    } ],
+    status: { 
+        type: GraphQLBoolean 
+    }
 });
 
-QuContainerChema.statics.findQuestions = (id) => {
-    const questions = this.findById(id).populate("questions");
-    return questions.then((container) => {
-        return container.questions;
-    });
+QuContainerSchema.statics.findQuestions = function(id) {
+    return this.findById(id)
+        .populate("questions")
+        .then((container) =>  container.questions );
 }
 
-QuContainerChema.statics.addQuestion = (id, questionString, answeres) => {
-    const Question = require("./QuestionModel").default;
+QuContainerSchema.statics.addQuestion = function(id, questionString, answeres) {
+    const Question = require("./QuestionModel");
     
     return this.findById(id).then((container) => {
         const question = new Question({
@@ -31,6 +37,6 @@ QuContainerChema.statics.addQuestion = (id, questionString, answeres) => {
     })
 }
 
-const Container = mongoose.model("container", QuContainerChema);
+const Container = mongoose.model("container", QuContainerSchema);
 
 module.exports = Container;

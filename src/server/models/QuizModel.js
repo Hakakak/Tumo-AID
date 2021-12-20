@@ -10,17 +10,18 @@ const QuizSchema = new Schema ({
     status: {type: Boolean, required: true}
 });
 
-QuizSchema.statics.findQuestions = (id) => {
-    const questions = this.findById(id).populate("questions");
+QuizSchema.statics.findQuestions = function(id) {
+    const questions = this.findOne({id: id}).populate("questions");
+
     return questions.then((Quiz) => {
         return Quiz.questions;
     });
 }
 
-QuizSchema.statics.addQuestion = (id, QuizQuestion, answers) => {
+QuizSchema.statics.addQuestion = function(id, QuizQuestion, answers) {
     const Question = require("./QuestionModel").default;
 
-    return this.findById(id).then((Quiz) => {
+    return this.findOne({id: id}).then((Quiz) => {
         const question = new Question({
             Quiz,
             QuizQuestion,
