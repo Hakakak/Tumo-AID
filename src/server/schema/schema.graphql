@@ -15,6 +15,7 @@ type RootQueryType {
 type QuizType {
   id: ID
   name: String
+  description: String
   questions: [ID]
   status: Boolean
 }
@@ -42,8 +43,9 @@ type AnswerType {
 }
 
 type Mutation {
-  addQuiz(name: String, status: Boolean): QuizType
-  addQuestionToDataBase(id: ID, question: String, answers: [ID]): QuestionType
-  addAnswerToDataBase(id: ID, answer: String, answertype: String, istrue: Boolean): AnswerType
+  addQuiz(name: String, description: String, status: Boolean): QuizType
+  addQuestionToContainer(id: ID, question: String, answers: [ID]): QuestionType
+  addQuestionToQuiz(containerid: ID, quizid: ID, question: String, answeres: [ID]): QuestionType
+  addAnswerToContainer(id: ID, answer: String, answertype: String, istrue: Boolean): AnswerType
   addContainer(name: String, status: Boolean): QuContainerType
 }

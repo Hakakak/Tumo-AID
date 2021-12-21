@@ -1,0 +1,204 @@
+body{
+    margin: 0px;
+}
+
+.header{
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #461792;
+}
+
+.headerBlock{
+    width: 250px;
+    display: flex;
+    color: white;  
+    justify-content: space-around  ; 
+    align-items: center;    
+}
+
+.logo{
+    width: 150px;
+}
+
+.exit{
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.exit:hover{
+color: #461792;
+background-color: white;
+}
+
+.done{
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.done:hover{
+    background-color: white;
+    color: green; 
+}
+
+.section{
+    display: flex;
+    /* width: 100vw; */
+    height: 94vh;
+}
+
+.block1{
+    width: fit-content;
+    height: 100%;
+    margin: 0px;
+}
+
+.questionBullets{
+    width: 220px;
+    height: 50px;
+    background-color: #e9f4fc;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.questionBullets_block{
+    display: flex;
+    justify-content: space-around;
+    width:100px ;
+}
+
+.number{
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    background-color:white; 
+}
+
+
+.block2{
+    width: 90vw;
+    height: 100%;
+    background-color: #f1f2f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}           
+
+.question{
+    height: 150px;
+    width: 75vw;
+    border: 1px solid black;
+    margin: 0;
+    margin-top:50px;
+    background-color: white;
+    border-radius:4px;
+    text-align: center;
+    line-height: 125px;  
+}
+
+.img{
+    object-fit: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;  
+}
+
+.qList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.answers{
+    width: 42vw;
+    height: 150px;
+    margin: 4px;
+    border-radius:3px; 
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-right: 10px;
+}
+
+.answers1{
+    background-color:  #003a6b
+    ;
+}
+
+.answers2{
+    background-color:  #5293bb
+    ;
+}
+
+.answers3{
+    background-color:   #3776a1
+    ;
+}
+
+.answers4{
+    background-color: #89cff1 ;
+}
+
+
+/* Here goes main pages css */
+
+
+.quizBody{
+    padding-top: 50px;
+    background-color: #f1f2f3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100vh;
+}
+
+.quizBox{
+    height: 30vh;
+    width: 15vw;
+    border: 1px black solid;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5%;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quizName{
+    font-size: 50px;
+
+}

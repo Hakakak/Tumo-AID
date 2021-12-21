@@ -10,6 +10,8 @@ const webpackConfig = require("../../webpack.config.js");
 
 db.connect();
 const app = express();
+
+app.use("/images", express.static("src/client/images"));
 app.use(bodyParser.json());
 app.use(
   "/graphql",
