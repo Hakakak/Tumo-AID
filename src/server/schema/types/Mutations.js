@@ -53,13 +53,14 @@ const mutation = new GraphQLObjectType({
       type: QuizType,
       args: {
         name: { type: GraphQLString },
+        description: { type: GraphQLString },
         status: { type: GraphQLBoolean },
       },
-      resolve(parentValue, { name, status }) {
-        return Quiz.create({ name, status });
+      resolve(parentValue, { name, status, description }) {
+        return Quiz.create({ name, status, description });
       },
     },
-    addQuestionToDataBase: {
+    addQuestionToContainer: {
       type: QuestionType,
       args: {
         id: { type: GraphQLID , required: true},
@@ -70,7 +71,19 @@ const mutation = new GraphQLObjectType({
         return QuContainer.addQuestion(id, question, answers);
       },
     },
-    addAnswerToDataBase: {
+    addQuestionToQuiz: {
+      type: QuestionType,
+      args: {
+        containerid: { type: GraphQLID , required: true},
+        quizid: { type: GraphQLID , required: true},
+        question: { type: GraphQLString },
+        answeres: { type: GraphQLList(GraphQLID) },
+      },
+      resolve(parentValue, { containerid, quizid, question, answeres }) {
+        return Quiz.addQuestion(containerid, quizid, question, answeres);
+      },
+    },
+    addAnswerToContainer: {
       type: AnswerType,
       args: { 
         id: { type: GraphQLID },

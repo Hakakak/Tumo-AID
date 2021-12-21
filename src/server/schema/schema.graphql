@@ -6,6 +6,7 @@ schema {
 type RootQueryType {
   Quizes: [QuizType]
   Containers: [QuContainerType]
+  Questions: [QuestionType]
   Quiz(id: ID!): QuizType
   Question(id: ID!): QuestionType
   Answer(id: ID!): AnswerType

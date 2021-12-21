@@ -25,6 +25,12 @@ const RootQuery = new GraphQLObjectType({
         return QuContainer.find({});
       },
     },
+    Questions: {
+      type: new GraphQLList(QuestionType),
+      resolve() {
+        return Question.find({});
+      },
+    },
     Quiz: {
       type: QuizType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },

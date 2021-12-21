@@ -1,0 +1,58 @@
+mutation a {
+  addQuestionToContainer(id: "61c0811bcbdb3fe1b632e733", question: "Hello?"){
+    id
+    question
+  }
+}
+
+mutation addAnswer {
+  addAnswerToContainer(id:"61c1a45b1edf60251412472a" ,answer: "What?", istrue: false){
+    answer
+  }
+}
+
+query findAnswer{
+  Answer(id: "61c105b2f6b06d12a4fa3399"){
+		answer
+  }
+}
+
+query findQuizes {
+  Quizes{
+    name
+    status
+  }
+}
+
+query findQuiz {
+  Quiz(id: "61bee8ec013dba26df154620"){
+    name
+    status
+  }
+}
+
+query findQuestion {
+  Question(id : "61c105b2f6b06d12a4fa3399"){
+    question
+    id
+  }
+}
+
+query findContainers{
+  Containers{
+    questions{
+      question
+      id
+      answers{
+        answer
+      }
+    }
+  }
+}
+
+mutation addQuizQuestion{
+  addQuestionToQuiz(containerid: "61c0811bcbdb3fe1b632e733", quizid: "61bf975f40f68c35043cb954", question: "WTF?!?!?"){
+    question
+    id
+  }
+}

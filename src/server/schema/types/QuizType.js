@@ -15,6 +15,7 @@ const QuizType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString},
+        description: { type: GraphQLString},
         questions: {
             type: new GraphQLList(GraphQLID), 
             resolve(parentValue) {
