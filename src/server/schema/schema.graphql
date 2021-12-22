@@ -16,13 +16,6 @@ type QuizType {
   id: ID
   name: String
   description: String
-  questions: [ID]
-  status: Boolean
-}
-
-type QuContainerType {
-  id: ID
-  name: String
   questions: [QuestionType]
   status: Boolean
 }
@@ -40,6 +33,13 @@ type AnswerType {
   answertype: String
   istrue: Boolean
   question: QuestionType
+}
+
+type QuContainerType {
+  id: ID
+  name: String
+  questions: [QuestionType]
+  status: Boolean
 }
 
 type Mutation {

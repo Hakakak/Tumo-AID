@@ -1,6 +1,6 @@
 //@ts-check
 import React from "react";
-import { QueryRenderer, graphql, commitMutation } from "react-relay";
+import { QueryRenderer, graphql } from "react-relay";
 import { Link } from "react-router-dom";
 import environment from "../relay/enviroment";
 
@@ -14,9 +14,13 @@ const query = graphql`
   }
 `;
 
+const postAxios = function(id){
+
+}
+
 const renderQuery = ({ error, props }) => {
   if (!error && !props) {
-    return <div>Loading...</div>;
+    return <div className="loadingScreen">Loading...</div>;
   }
   const quizs = props.Quizes.map(
     (quiz) =>
@@ -24,7 +28,8 @@ const renderQuery = ({ error, props }) => {
           <div key={quiz.id} className = "quizBox">
             <p className = "quizName">{quiz.name}</p>
             <p className = "quizDesc">{quiz.description}</p>
-            <Link to="/quiz">Niggas</Link>
+            {/* <Link to = {"/quiz/" + quiz.id}>Niggas</Link> */}
+            <Link to = {"/quiz/" + quiz.id}>Niggas</Link>
           </div>
         )
   );

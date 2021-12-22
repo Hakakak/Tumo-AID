@@ -17,7 +17,7 @@ const QuizType = new GraphQLObjectType({
         name: { type: GraphQLString},
         description: { type: GraphQLString},
         questions: {
-            type: new GraphQLList(GraphQLID), 
+            type: new GraphQLList(require("./QuestionType")), 
             resolve(parentValue) {
                 return Quiz.findQuestions(parentValue.id);
             },
