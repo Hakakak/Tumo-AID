@@ -29,7 +29,7 @@ const renderQuery = ({ error, props }) => {
             <p className = "quizName">{quiz.name}</p>
             <p className = "quizDesc">{quiz.description}</p>
             {/* <Link to = {"/quiz/" + quiz.id}>Niggas</Link> */}
-            <Link to = {"/quiz/" + quiz.id}>Niggas</Link>
+            <Link to = {"/quiz/" + quiz.id}>Take Test</Link>
           </div>
         )
   );
