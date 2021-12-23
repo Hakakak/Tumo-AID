@@ -32,7 +32,7 @@ const renderQuery = ({ error, props }) => {
   return (
     <section className = "section">
       <SideBar quiz = {Quiz} />
-      <QuizBody questions = {Quiz.questions} />
+      <QuizBody quiz = {Quiz} />
     </section>
   );
 };

@@ -3,8 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-function SideBar(props) {
-
+const SideBar = (props) => {
     let uniqueQuestions = props.quiz.questions.filter((value, index, self) =>
         index === self.findIndex((t) => (
             t.id === value.id
@@ -13,7 +12,7 @@ function SideBar(props) {
 
     const questionItems = uniqueQuestions.map(({ id }, index) => {
       return (
-        <li className="questionBullets" key={id}>
+        <li className="questionBullets" key={id} > 
             <div className="questionBullets_block">
                     <div className="number">
                         {++index}

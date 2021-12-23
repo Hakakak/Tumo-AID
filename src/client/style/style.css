@@ -1,5 +1,7 @@
 body{
     margin: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .header{
@@ -97,7 +99,7 @@ background-color: white;
 }
 
 
-.block2{
+.block2 .div{
     width: 90vw;
     height: 100%;
     background-color: #f1f2f3;
@@ -133,10 +135,11 @@ background-color: white;
 }
 
 .answers{
-    width: 42vw;
+    width: 30vw;
     height: 150px;
     margin: 4px;
     border-radius:3px; 
+    font-size: large;
     color: white;
     text-align: center;
     line-height: 100px;
@@ -144,6 +147,10 @@ background-color: white;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.answers p{
+    padding-left: 30px;
 }
 
 .circle{

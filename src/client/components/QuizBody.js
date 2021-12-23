@@ -1,17 +1,22 @@
-//@ts-check
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import QuestionBody from "./QuestionBody";
 
+const QuizBody = (props) => {
 
-function QuizBody(props) {
-
-    const [questions, setQuestion] = useState(props.questions);
     // let uniqueQuestions = props.quiz.questions.filter((value, index, self) =>
     //     index === self.findIndex((t) => (
     //         t.id === value.id
     //     ))
     // )
-    let questionIndex = props.index;
+
+    // let uniqueQuestions = props.questions.filter((value, index, self) =>
+    //     index === self.findIndex((t) => (
+    //         t.id === value.id
+    //     ))
+    // )
+
 
     // props.questions.forEach(element => {
     //     if(element.answers.length > 4){
@@ -31,50 +36,47 @@ function QuizBody(props) {
     //     });
     // });
 
-    const updateQuestion = (id) => {
-        let questions = props.questions;
-        questions = questions.map((question, index) => {
-            if(question.id == id){
-                console.log("found ya nigga");
-                questionIndex = index;
-            }
-        })
-    };
+    // const updateQuestion = (id) => {
+    //     let questions = props.questions;
+    //     questions = questions.map((question, index) => {
+    //         if(question.id == id){
+    //             console.log("found ya nigga");
+    //             index = index;
+    //         }
+    //     })
+    // };
 
+    // console.log(props);
+    // console.log(props.quiz);
+    // console.log(props.quiz.questions);
 
-    const questionBody = props.questions.map(({ id, question, quanswers }, index) => {
-        if(index == questionIndex){
-
-            if({quanswers}.length > 4){
-                for (let i = quanswers.length; i > 4; i--) {
-                    quanswers.pop();
-                    }
-            } else if (quanswers.answers < 4){
-                    for (let i = quanswers.length; i < 4; i++) {
-                        quanswers.push({ answer: " other "});
-                    }
-                
-                }
-            const answers = quanswers.map( ({answer}) => {
-                    return <div className="answers1 answers" onClick={() => {this.style.backgroundColor = "white"}}>
-                                <p className="questions">{answer}</p><span className="circle"></span>
-                            </div>
-                });
-
-            return (
-              <div className="block2" key = {id}>
-                  <div className="question">{question}</div>
-                  <img className="img" src = "../images/lus.jpeg" />
-                  <div className="qList">{answers}</div>
-            </div>
-            );
-        }
+    const questionBody = props.quiz.questions.map(({ id, question, answers }, index) => {
+        return (<div className="div">
+    <div className="question">{question}</div>
+    <img className="img" src = "../images/lus.jfif" />
+    <div className="qList">
+        <div className="answers1 answers">
+            <p className="questions">Hide</p><span className="circle"></span>
+        </div>
+        <div className="answers2 answers">
+            <p className="questions">Treet patient</p><span className="circle"></span>
+        </div>
+        <div className="answers3 answers">
+            <p className="questions">Run</p><span className="circle"></span>
+        </div>
+        <div className="answers4 answers">
+            <p className="questions">Other</p><span className="circle"></span>
+        </div>
+    </div>
+  </div>);
     });
-    return {questionBody};
+
+    return <div className="block2">{questionBody[0]}</div>
+    
   }
 
-export default QuizBody;
-
+  export default QuizBody;
+  
 {/* <div className="block2">
         <div className="question"></div>
         <img className="img" src = "../images/lus.jpeg" />
